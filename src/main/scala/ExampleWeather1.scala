@@ -1,4 +1,3 @@
-/*
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkConf
 
@@ -31,8 +30,7 @@ object ExampleWeather1 extends App {
     val rddResult = rddAvgTempPerMonth.sortByKey().coalesce(1)
 
     //Save the RDD on HDFS; the directory should NOT exist
-    rddResult.saveAsTextFile("hdfs:/user/egallinucci/spark/avgTempPerMonth")
+    rddResult.saveAsTextFile("hdfs:/user/cloudera/spark/avgTempPerMonth")
   }
 
 }
-*/

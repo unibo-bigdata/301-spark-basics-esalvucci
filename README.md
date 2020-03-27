@@ -64,11 +64,14 @@ Reproduce on Spark the exercises done on Hadoop MapReduce on the capra and divin
 
 - Jobs:
   - Count the number of occurrences of each word
-    - Result: (sopra, 1), (la, 4), …
+  	``` val wordOccurrences = rddCapra.flatMap(line => line.split(" ")).map((_, 1)).reduceByKey((_+_)).sortByKey().collect ```
+	 - Result: (sopra, 1), (la, 4), …
   - Count the number of occurrences of words of given lengths
-    - Result: (2, 4), (5, 8)
+    	``` val wordOccurrencesByLength = rddCapra.flatMap(line => line.split(" ")).map(x =>(x.length, 1)).reduceByKey(_+_).collect ```
+	- Result: (2, 4), (5, 8)
   - Count the average length of words given their first letter (hint: check the example in 301-1)
-    - Result: (s, 5), (l, 2), …
+	```  val averageLenghtByFirstLetter = rddCapra.flatMap(line => line.split(" ")).map(x => (x.substring(0,1), x.length)).aggregateByKey((0.0,0.0))((a,v) => (a._1 + v, a._2 + 1), (a1, a2) => (a1._1 + a2._1, a1._2 + a2._2)).mapValues(v => v._1 / v._2).collect ```
+    	- Result: (s, 5), (l, 2), …
   - Return the inverted index of words
     - Result: (sopra, (0)), (la, (0, 1)), …
 - How does Spark compare with respect to MapReduce? (performance, ease of use)

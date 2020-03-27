@@ -1,3 +1,4 @@
+/*
 import org.apache.spark.sql.SparkSession
 
 // spark2-submit --class ExampleWeather2 BD-301-spark-basics.jar
@@ -32,3 +33,4 @@ object ExampleWeather2 extends App {
   }
 
 }
+*/
